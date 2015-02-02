@@ -15,3 +15,12 @@ install:
 	virtualenv --no-site-packages .env
 	. $(ROOT_DIR)/.env/bin/activate; pip install -r $(ROOT_DIR)/requirements.txt
 	. $(ROOT_DIR)/.env/bin/activate; make syncdb
+
+bower-install: 
+	cd django_angular_backend/static; bower install
+	
+test-install: 
+	cd django_angular_backend/static; npm install 
+	
+karma-test: test-install
+	cd django_angular_backend/static; karma start test/karma.conf.js
