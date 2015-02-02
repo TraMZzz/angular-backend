@@ -1,0 +1,53 @@
+<div class="col-md-9">
+    <h3>My contact</h3><hr/>
+
+    <div class="row form-group">
+        <div class="col-sm-6">
+        
+            <div class="row form-group">
+                <div class="col-sm-4">First name</div>
+                <div class="col-md-8">{[{vm.contact.firstName}]}</div>
+            </div>
+            
+            <div class="row form-group">
+                <div class="col-sm-4">Surname</div>
+                <div class="col-sm-8">{[{vm.contact.lastName}]}</div>
+            </div>
+            
+            <div class="row form-group">
+                <div class="col-sm-4">Date of birth</div>
+                <div class="col-sm-8">{[{vm.contact.birthday | date : 'yyyy-MM-dd'}]}</div>
+            </div>
+            
+            <div class="row form-group">
+                <div class="col-sm-4">Bio</div>
+                <div class="col-sm-8">{[{vm.contact.bio}]}</div>
+            </div>
+            
+        </div>
+        <div class="col-sm-6">
+        
+            <div class="row form-group">
+                <div class="col-sm-4">Email</div>
+                <div class="col-sm-8">{[{vm.contact.eMail}]}</div>
+            </div>
+            
+            <div class="row form-group">
+                <div class="col-sm-4">Jabber</div>
+                <div class="col-sm-8">{[{vm.contact.jabber}]}</div>
+            </div>
+            
+            <div class="row form-group">
+                <div class="col-sm-4">Skype</div>
+                <div class="col-sm-8">{[{vm.contact.skype}]}</div>
+            </div>
+            
+            <div class="row form-group">
+                <div class="col-sm-4">Other</div>
+                <div class="col-sm-8">{[{vm.contact.other}]}</div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
