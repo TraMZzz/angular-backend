@@ -1,1 +1,42 @@
 Django Hello World Project
+
+Installing:
+
+Requirments: *bower* front-end package-manager
+
+```
+    git clone https://github.com/TraMZzz/angular-backend
+    cd angular-backend
+    make install
+    make bower-install
+```
+
+Running:
+
+Start django backend  
+
+```
+    cd angular-backend
+    make run
+```
+  
+Open URL in browser locally: http://127.0.0.1:8000/ 
+
+
+### Testing:
+
+Installing Karma test-runner:  
+
+Requirements: *nodejs* & *npm*
+
+```
+    cd angular-backend
+    make test-install
+```
+
+Runing test
+
+```
+    cd angular-backend
+    make karma-test
+```

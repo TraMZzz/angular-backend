@@ -3,6 +3,7 @@
     angular
         .module('myApp')
         .controller("HomeController", HomeControllerFunc)
+        .controller("ContactsController", ContactsControllerFunc);
 
         HomeControllerFunc.$inject = [];
         function HomeControllerFunc() {
@@ -17,6 +18,14 @@
                 skype: "tramzzz",
                 other : "..."
             };
+        };
+
+        ContactsControllerFunc.$inject = ['Contacts'];
+        function ContactsControllerFunc(Contacts) {
+            var vc = this;
+            Contacts.query().$promise.then(function(d) {
+                vc.contacts = d.objects;
+            });
         };
 
 })();
