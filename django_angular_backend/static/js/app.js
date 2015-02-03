@@ -11,6 +11,11 @@
                     controller: 'HomeController',
                     controllerAs: 'vm'
                 })
+                .when('/contacts', {
+                templateUrl: '/static/partials/contacts.html',
+                controller: 'ContactsController',
+                controllerAs: 'vc'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
