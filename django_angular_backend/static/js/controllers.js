@@ -3,7 +3,8 @@
     angular
         .module('myApp')
         .controller("HomeController", HomeControllerFunc)
-        .controller("ContactsController", ContactsControllerFunc);
+        .controller("ContactsController", ContactsControllerFunc)
+        .controller("ContactInfoController", ContactInfoControllerFunc);
 
         HomeControllerFunc.$inject = [];
         function HomeControllerFunc() {
@@ -26,6 +27,26 @@
             Contacts.query().$promise.then(function(d) {
                 vc.contacts = d.objects;
             });
+        };
+
+        ContactInfoControllerFunc.$inject = ['$routeParams', 'Contacts', 'toastr'];
+        function ContactInfoControllerFunc($routeParams, Contacts, toastr) {
+            var vi = this;
+            var Id = $routeParams.contactId
+
+            Contacts.get({id : Id}, {}).$promise.then(function(d) {
+                vi.contact = d
+                toastr.success('Success!', 'Get Contact!');
+            }).catch(function(response) {
+                toastr.error('Error!', response.status);
+            });
+            vi.submit = function() {
+                vi.contact.$update().then(function(d) {
+                    toastr.success('Success!', 'Save Contact!');
+                }).catch(function(response) {
+                    toastr.error('Error!', response.status);
+                });
+            }
         };
 
 })();

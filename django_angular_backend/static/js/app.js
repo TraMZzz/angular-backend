@@ -1,7 +1,7 @@
 (function() {
     "use strict"
     angular
-        .module('myApp', ['ngRoute', 'ngResource'])
+        .module('myApp', ['ngRoute', 'ngResource', 'toastr'])
         .config(['$interpolateProvider', '$routeProvider',
             function($interpolateProvider, $routeProvider) {
                 $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
@@ -12,9 +12,14 @@
                     controllerAs: 'vm'
                 })
                 .when('/contacts', {
-                templateUrl: '/static/partials/contacts.html',
-                controller: 'ContactsController',
-                controllerAs: 'vc'
+                    templateUrl: '/static/partials/contacts.html',
+                    controller: 'ContactsController',
+                    controllerAs: 'vc'
+                })
+                .when('/contacts/:contactId', {
+                    templateUrl: '/static/partials/contact-info.html',
+                    controller: 'ContactInfoController',
+                    controllerAs: "vi"
                 })
                 .otherwise({
                     redirectTo: '/'

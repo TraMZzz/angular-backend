@@ -2,6 +2,7 @@ describe("myApp", function () {
     beforeEach(function () {
         module('ngRoute');
         module('ngResource');
+        module('toastr');
         module('myApp');
     });
 
