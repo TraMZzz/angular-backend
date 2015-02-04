@@ -10,7 +10,8 @@
                 return $resource(
                     "/api/v1/contact/:id", {id: "@id" },
                     {
-                        "query": {method: 'GET'}
+                        "query": {method: 'GET'},
+                        'update' : { method : 'PUT'}
                     }
                 );
             };

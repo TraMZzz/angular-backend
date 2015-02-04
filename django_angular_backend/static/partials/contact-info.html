@@ -1,0 +1,80 @@
+<h2>{[{vi.contact.first_name}]} {[{vi.contact.last_name}]}</h2>
+
+<form name="contactInfoForm" class="form-horizontal" novalidate>
+    <input type="hidden" name="id" ng-model="vi.contact.id"/>
+    <div class="row">
+        <div class="form-group col-sm-10">
+            <div >
+                <label for="name" class="col-sm-2 control-label">Name:</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" name="name" ng-model="vi.contact.first_name" >
+                </div>
+            </div>
+    
+            <div >
+                <label for="lastName" class="col-sm-2 control-label">Last name:</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" name="lastName" ng-model="vi.contact.last_name">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-10">
+            <label for="email" class="col-sm-2 control-label">Email:</label>
+            <div class="col-sm-4">
+              <input type="email" class="form-control" name="email" ng-model="vi.contact.email">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-10">
+            <label for="cellPahone" class="col-sm-2 control-label">Cell phone:</label>
+            <div class="col-sm-4">
+              <input type="text" phone-type class="form-control" name="cellPhone" ng-model="vi.contact.cellphone_number">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-10">
+            <label for="landLine" class="col-sm-2 control-label">Land line:</label>
+            <div class="col-sm-4">
+              <input type="text" phone-type class="form-control" name="landLine" ng-model="vi.contact.phone_number">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-10">
+            <label for="birthday" class="col-sm-2 control-label">Birthday:</label>
+            <div class="col-sm-4">
+                <input date-picker="self.datePickerOptions" class="form-control" name="birthday" ng-model="vi.contact.birth_date">
+            </div>
+        </div>  
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-10">
+            <label for="jabberId" class="col-sm-2 control-label">JID:</label>
+            <div class="col-sm-4">
+              <input type="email" class="form-control" name="jabberId" ng-model="vi.contact.jabber_id">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-10">
+            <div class="col-sm-offset-2 col-sm-8">
+                <button type="submit" ng-click="vi.submit()" class="btn btn-primary" >
+                    <small ng-hide="self.isRunning()">Save</small>
+                    <!--<small ng-show="self.isRunning()">Processing ...</small>-->
+                </button>
+                <!--<small ng-show="self.showResult()" class='text-info'>{{manager.resultMessage}}</small>-->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-10">
+            <div class="col-sm-offset-2 col-sm-8">
+                <a href='#/contacts'>&lt; Back to all contacts</a>
+            </div>
+        </div>
+    </div>
+</form>

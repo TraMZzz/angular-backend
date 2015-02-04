@@ -19,6 +19,7 @@ module.exports = function(config) {
     ,"bower_modules/angular-mocks/angular-mocks.js"
     ,"bower_modules/angular-route/angular-route.min.js"
     ,"bower_modules/angular-resource/angular-resource.min.js"
+    ,"bower_modules/angular-toastr/dist/angular-toastr.min.js"
 
     ,'partials/*.html'
     ,"js/*.js"
