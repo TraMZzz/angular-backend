@@ -32,14 +32,11 @@ describe('ContactsController filter', function() {
               };
 
             vc.getPage();
-            vc.pageChanged = function() {
-                vc.getPage(); 
-            };
         });
         $httpBackend.flush();
     }));
 
-    describe('after inital assigning ContactsController', function() {
+    describe('assigning ContactsController', function() {
 
         it ('should allow Pagination', function () {
             expect(vc.pageSize).toBe(3);
@@ -55,6 +52,37 @@ describe('ContactsController filter', function() {
 
         it ('should define totalItem', function () {
             expect(vc.totalItems).toBe(vc.contacts.length);
+        });
+
+        it ('should define filteredContacts', function () {
+            expect(vc.filteredContacts.length).toBe(vc.pageSize);
+        });
+
+        it ('should first_name Robert', function () {
+            expect(vc.filteredContacts[0].first_name).toBe('Robert');
+        });
+
+        it ('should first_name Paul', function () {
+            vc.currentPage = 2;
+            vc.getPage();
+            expect(vc.filteredContacts[0].first_name).toBe('Paul');
+        });
+
+        it ('should searchText Michael', function () {
+            vc.searchText = 'Michael'
+            vc.getPage();
+            expect(vc.filteredContacts.length).toBe(1);
+            expect(vc.filteredContacts[0].first_name).toBe('Michael');
+        });
+
+        it ('should searchText Pa', function () {
+            vc.searchText = 'Pa'
+            vc.getPage();
+            expect(vc.filteredContacts.length).toBe(3);
+            expect(vc.filteredContacts[0].first_name).toBe('Paul');
+            expect(vc.filteredContacts[1].first_name).toBe('Nate');
+            expect(vc.filteredContacts[1].last_name).toBe('Parker');
+            expect(vc.filteredContacts[2].first_name).toBe('Paul');
         });
 
     });
@@ -114,7 +142,7 @@ describe('ContactsController filter', function() {
             "id": "3"
         }, {
             "id": 4,
-            "first_name": "Paul ",
+            "first_name": "Paul",
             "last_name": "Allen",
             "birth_date": "1976-07-21",
             "__v": 0,
@@ -126,7 +154,7 @@ describe('ContactsController filter', function() {
             "id": "4"
         }, {
             "id": 5,
-            "first_name": "Daniel ",
+            "first_name": "Daniel",
             "last_name": "Kottke",
             "birth_date": "1953-04-01",
             "__v": 0,
@@ -138,7 +166,7 @@ describe('ContactsController filter', function() {
             "id": "5"
         }, {
             "id": 6,
-            "first_name": "Matthew ",
+            "first_name": "Matthew",
             "last_name": "Haughey",
             "birth_date": "1972-10-10",
             "__v": 0,
@@ -150,7 +178,7 @@ describe('ContactsController filter', function() {
             "id": "6"
         }, {
             "id": 7,
-            "first_name": "Michael ",
+            "first_name": "Michael",
             "last_name": "Hawley",
             "birth_date": "1961-11-02",
             "__v": 0,
@@ -162,7 +190,7 @@ describe('ContactsController filter', function() {
             "id": "7"
         }, {
             "id": 8,
-            "first_name": "Nate ",
+            "first_name": "Nate",
             "last_name": "Parker",
             "birth_date": "1979-11-28",
             "__v": 0,
@@ -198,7 +226,7 @@ describe('ContactsController filter', function() {
             "id": "10"
         }, {
             "id": 11,
-            "first_name": "Kelley ",
+            "first_name": "Kelley",
             "last_name": "Deal",
             "birth_date": "1961-06-12",
             "__v": 0,
@@ -210,7 +238,7 @@ describe('ContactsController filter', function() {
             "id": "11"
         }, {
             "id": 12,
-            "first_name": "Russ ",
+            "first_name": "Russ",
             "last_name": "Nelson",
             "birth_date": "1958-03-24",
             "__v": 0,
