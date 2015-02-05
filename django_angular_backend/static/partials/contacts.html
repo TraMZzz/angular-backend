@@ -1,13 +1,32 @@
 <h2>Contacts</h2>
 
+<div class="panel-heading">
+    <div class="row">
+        <div class=" col-sm-3" >
+            <label class="control-label pull-left" for="fldFilter">Search:</label>
+            <div class="col-sm-9">
+                <input type="text"  class="col-md-6 form-control input-md" ng-model="vc.searchText" ng-change="vc.pageChanged()"/>   
+            </div>
+        </div>
+    </div>
+</div>
 <table class='table table-striped'>
     <tr>
-        <th >Name:</th>
-        <th class='col-sm-4'>Email:</th>
-        <th class='col-sm-2'>Cell phone:</th>
-        <th class='col-sm-2'>Landline:</th>
+      <th>
+          <a ng-click="vc.orderByField='first_name'; reverseSort = !reverseSort">Name:</a>
+      </th>
+      <th class='col-sm-4'>
+        <a ng-click="vc.orderByField='email'; reverseSort = !reverseSort">Email:</a>
+      </th>
+      <th class='col-sm-2'>
+        <a ng-click="vc.orderByField='cellphone_number'; reverseSort = !reverseSort">Cell phone:</a>
+      </th>
+      <th class='col-sm-2'>
+        <a ng-click="vc.orderByField='phone_number'; reverseSort = !reverseSort">Landline:</a>
+      </th>
     </tr>
-    <tr ng-repeat='c in vc.contacts'>
+
+    <tr ng-repeat='c in vc.filteredContacts | orderBy:vc.orderByField:reverseSort'>
         <td>
             <a href="#/contacts/{[{c.id}]}">
                 {[{c.first_name+' '+c.last_name}]}
@@ -17,10 +36,15 @@
             {[{c.email}]}
         </td>
         <td>
-            {[{c.cellphone_number}]}
+            {[{c.cellphone_number | usa_phone}]}
         </td>
         <td>
-            {[{c.phone_number}]}
+            {[{c.phone_number | usa_phone}]}
         </td>
     </tr>
 </table>
+<pagination 
+          items-per-page="vc.pageSize"
+          total-items="vc.totalItems" 
+          ng-model="vc.currentPage" 
+          ng-change="vc.pageChanged()"></pagination>

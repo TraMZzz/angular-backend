@@ -1,7 +1,7 @@
 (function() {
     "use strict"
     angular
-        .module('myApp', ['ngRoute', 'ngResource', 'toastr'])
+        .module('myApp', ['ngRoute', 'ngResource', 'toastr', 'ui.bootstrap'])
         .config(['$interpolateProvider', '$routeProvider',
             function($interpolateProvider, $routeProvider) {
                 $interpolateProvider.startSymbol('{[{').endSymbol('}]}');

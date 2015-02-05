@@ -4,6 +4,7 @@ describe('Contacts Service', function() {
     module('ngRoute');
     module('ngResource');
     module('toastr');
+    module('ui.bootstrap');
     module('myApp');
     jasmine.addMatchers(listMatchers());
     }
