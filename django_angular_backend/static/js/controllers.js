@@ -21,11 +21,29 @@
             };
         };
 
-        ContactsControllerFunc.$inject = ['Contacts'];
-        function ContactsControllerFunc(Contacts) {
+        ContactsControllerFunc.$inject = ['Contacts', '$filter'];
+        function ContactsControllerFunc(Contacts, $filter) {
             var vc = this;
+            vc.orderByField = 'first_name';
+            vc.currentPage = 1;
+            vc.pageSize = 3;
+            vc.filteredContacts = [];
             Contacts.query().$promise.then(function(d) {
                 vc.contacts = d.objects;
+                vc.totalItems = vc.contacts.length
+
+                vc.getPage = function(){
+                    var begin = ((vc.currentPage - 1) * vc.pageSize);
+                    var end = begin + vc.pageSize;
+                    vc.filteredContacts = $filter('filter')(vc.contacts, vc.searchText);
+                    vc.totalItems = vc.filteredContacts.length;
+                    vc.filteredContacts = vc.filteredContacts.slice(begin, end);
+                  };
+
+                vc.getPage();
+                vc.pageChanged = function() {
+                    vc.getPage(); 
+                };
             });
         };
 

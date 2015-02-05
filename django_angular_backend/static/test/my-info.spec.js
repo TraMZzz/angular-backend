@@ -3,6 +3,7 @@ describe("myApp", function () {
         module('ngRoute');
         module('ngResource');
         module('toastr');
+        module('ui.bootstrap');
         module('myApp');
     });
 
