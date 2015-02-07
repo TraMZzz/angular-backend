@@ -77,15 +77,15 @@
         LastControllerFunc.$inject = ['$scope', 'Contacts'];
         function LastControllerFunc($scope, Contacts) {
             var vl = this;
+            vl.contacts = $scope.contacts
+            vl.limit = $scope.limit || 5;
+            vl.orderBy = "-date_created";
+            vl.limitFunc = function (v, i) {
+                return (i < vl.limit);
+            };
             Contacts.query().$promise.then(function(d) {
-                vl.contacts = d.objects;
-                vl.limit = $scope.limit || 5;
-                vl.orderBy = "-date_created";
-                vl.limitFunc = function (v, i) {
-                    return (i < vl.limit);
-                };
+                vl.contacts = $scope.contacts || d.objects;
             });
-            console.log(vl)
         };
 
 })();

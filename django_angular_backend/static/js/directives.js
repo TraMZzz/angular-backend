@@ -9,7 +9,9 @@
                 restrict : "EA",
                 controller : "LastController",
                 controllerAs : "vl",
+                replace : true,
                 scope : {
+                    contacts : "=bind",
                     limit : "=limit"
                 },
                 templateUrl: '/static/partials/last-contact.html'
