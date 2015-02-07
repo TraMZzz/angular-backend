@@ -4,7 +4,8 @@
         .module('myApp')
         .controller("HomeController", HomeControllerFunc)
         .controller("ContactsController", ContactsControllerFunc)
-        .controller("ContactInfoController", ContactInfoControllerFunc);
+        .controller("ContactInfoController", ContactInfoControllerFunc)
+        .controller("LastController", LastControllerFunc);
 
         HomeControllerFunc.$inject = [];
         function HomeControllerFunc() {
@@ -71,6 +72,20 @@
 
                 vi.opened = !vi.opened;
             }
+        };
+
+        LastControllerFunc.$inject = ['$scope', 'Contacts'];
+        function LastControllerFunc($scope, Contacts) {
+            var vl = this;
+            Contacts.query().$promise.then(function(d) {
+                vl.contacts = d.objects;
+                vl.limit = $scope.limit || 5;
+                vl.orderBy = "-date_created";
+                vl.limitFunc = function (v, i) {
+                    return (i < vl.limit);
+                };
+            });
+            console.log(vl)
         };
 
 })();
