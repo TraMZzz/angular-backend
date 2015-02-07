@@ -65,6 +65,12 @@
                     toastr.error('Error!', response.status);
                 });
             }
+            vi.open = function($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+
+                vi.opened = !vi.opened;
+            }
         };
 
 })();

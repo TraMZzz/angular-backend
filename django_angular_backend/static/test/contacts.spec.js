@@ -5,6 +5,7 @@ describe('Contacts Service', function() {
     module('ngResource');
     module('toastr');
     module('ui.bootstrap');
+    module('ui.mask');
     module('myApp');
     jasmine.addMatchers(listMatchers());
     }

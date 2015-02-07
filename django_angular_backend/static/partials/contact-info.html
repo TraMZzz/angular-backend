@@ -4,52 +4,99 @@
     <input type="hidden" name="id" ng-model="vi.contact.id"/>
     <div class="row">
         <div class="form-group col-sm-10">
-            <div >
+            <div  ng-class="{'has-error': contactInfoForm.Name.$invalid && contactInfoForm.Name.$dirty}">
                 <label for="name" class="col-sm-2 control-label">Name:</label>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" name="name" ng-model="vi.contact.first_name" >
+                  <input type="text" class="form-control" name="Name" ng-model="vi.contact.first_name" required>
+                </div>
+                <div class="col-sm-6 control-label" ng-show="contactInfoForm.Name.$error.required">
+                    <small class='help-block has-error'>
+                        Name is required
+                    </small>
                 </div>
             </div>
-    
-            <div >
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-10">
+            <div ng-class="{'has-error': contactInfoForm.lastName.$invalid && contactInfoForm.lastName.$dirty}">
                 <label for="lastName" class="col-sm-2 control-label">Last name:</label>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" name="lastName" ng-model="vi.contact.last_name">
+                  <input type="text" class="form-control" name="lastName" ng-model="vi.contact.last_name" required>
+                </div>
+                <div class="col-sm-6 control-label">
+                    <small class='help-block has-error' ng-show="contactInfoForm.lastName.$error.required">
+                        Last name is required
+                    </small>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-sm-10">
+        <div class="form-group col-sm-10" ng-class="{'has-error': contactInfoForm.email.$invalid}">
             <label for="email" class="col-sm-2 control-label">Email:</label>
             <div class="col-sm-4">
-              <input type="email" class="form-control" name="email" ng-model="vi.contact.email">
+              <input type="email" class="form-control" name="email" ng-model="vi.contact.email" required>
+            </div>
+            <div class="col-sm-6 control-label">
+                <small class='help-block has-error' ng-show="contactInfoForm.email.$error.required">
+                    Email is required
+                </small>
+                <small class='help-block has-error' ng-show="contactInfoForm.email.$error.email">This is not a valid email.</small>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-sm-10">
+        <div class="form-group col-sm-10" ng-class="{'has-error': contactInfoForm.cellPhone.$invalid}">
             <label for="cellPahone" class="col-sm-2 control-label">Cell phone:</label>
             <div class="col-sm-4">
-              <input type="text" phone-type class="form-control" name="cellPhone" ng-model="vi.contact.cellphone_number">
+              <input type="tel" class="form-control" name="cellPhone" ng-model="vi.contact.cellphone_number" ui-mask='+99999999999' required>
+            </div>
+            <div class="col-sm-6 control-label">
+                <small class='help-block has-error' ng-show="contactInfoForm.cellPhone.$error.required">
+                    Cell phone is required
+                </small>
+                <small class='help-block has-error' ng-show="contactInfoForm.cellPhone.$error.mask && !contactInfoForm.cellPhone.$error.required">
+                    Cell phone is wrong format
+                </small>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-sm-10">
+        <div class="form-group col-sm-10" ng-class="{'has-error': contactInfoForm.landLine.$invalid}">
             <label for="landLine" class="col-sm-2 control-label">Land line:</label>
             <div class="col-sm-4">
-              <input type="text" phone-type class="form-control" name="landLine" ng-model="vi.contact.phone_number">
+              <input type="tel"  class="form-control" name="landLine" ng-model="vi.contact.phone_number" required ui-mask='+99999999999'>
+            </div>
+            <div class="col-sm-6 control-label">
+                <small class='help-block has-error' ng-show="contactInfoForm.landLine.$error.required">
+                    Land line is required
+                </small>
+                <small class='help-block has-error' ng-show="contactInfoForm.landLine.$error.mask && !contactInfoForm.landLine.$error.required">
+                    Land line is wrong format
+                </small>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-sm-10">
+        <div class="form-group col-sm-10" ng-class="{'has-error': contactInfoForm.birthday.$invalid}">
             <label for="birthday" class="col-sm-2 control-label">Birthday:</label>
             <div class="col-sm-4">
-                <input date-picker="self.datePickerOptions" class="form-control" name="birthday" ng-model="vi.contact.birth_date">
+                <div class='input-group'>
+                    <input datepicker-popup="MMM dd, yyyy" type='text' class="form-control" name="birthday" ng-model="vi.contact.birth_date" is-open='vi.opened'>
+                    <span class='input-group-btn'>
+                        <button class='btn btn-default' ng-click="vi.open($event)">
+                            <i class='glyphicon glyphicon-calendar'/>
+                        </button>
+                    </span>
+                </div>
             </div>
-        </div>  
+            <div class="col-sm-6 control-label">
+                <small class='help-block has-error' ng-show="contactInfoForm.birthday.$error.date">
+                    Birthday is wrong format must be some like this (MMM dd, yyyy)
+                </small>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="form-group col-sm-10">
@@ -62,11 +109,11 @@
     <div class="row">
         <div class="form-group col-sm-10">
             <div class="col-sm-offset-2 col-sm-8">
-                <button type="submit" ng-click="vi.submit()" class="btn btn-primary" >
-                    <small ng-hide="self.isRunning()">Save</small>
-                    <!--<small ng-show="self.isRunning()">Processing ...</small>-->
+                <button type="submit" ng-click="vi.submit()" class="btn btn-primary" ng-disabled='contactInfoForm.$invalid'>
+                    <small>Save</small>
                 </button>
-                <!--<small ng-show="self.showResult()" class='text-info'>{{manager.resultMessage}}</small>-->
+                <small ng-show="contactInfoForm.$valid" class='text-success'>&lt; Form is valid</small>
+                <small ng-show="contactInfoForm.$invalid" class='text-danger'>Has errors</small>
             </div>
         </div>
     </div>

@@ -21,6 +21,7 @@ module.exports = function(config) {
     ,"bower_modules/angular-resource/angular-resource.min.js"
     ,"bower_modules/angular-toastr/dist/angular-toastr.min.js"
     ,"bower_modules/angular-bootstrap/ui-bootstrap-tpls.min.js"
+    ,'bower_modules/angular-ui-utils/ui-utils.min.js'
 
     ,'partials/*.html'
     ,"js/*.js"
