@@ -79,7 +79,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-sm-10">
+        <div class="form-group col-sm-10" ng-class="{'has-error': contactInfoForm.birthday.$invalid}">
             <label for="birthday" class="col-sm-2 control-label">Birthday:</label>
             <div class="col-sm-4">
                 <div class='input-group'>
@@ -91,7 +91,12 @@
                     </span>
                 </div>
             </div>
-        </div>  
+            <div class="col-sm-6 control-label">
+                <small class='help-block has-error' ng-show="contactInfoForm.birthday.$error.date">
+                    Birthday is wrong format must be some like this (MMM dd, yyyy)
+                </small>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="form-group col-sm-10">
