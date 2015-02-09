@@ -1,4 +1,7 @@
 <h2>{[{vi.contact.first_name}]} {[{vi.contact.last_name}]}</h2>
+<div class="alert alert-success" role="alert" ng-show="vi.contact.isBirthdayToday()">
+    Contact has a birthday today.
+</div>
 
 <form name="contactInfoForm" class="form-horizontal" novalidate>
     <input type="hidden" name="id" ng-model="vi.contact.id"/>
@@ -83,17 +86,12 @@
             <label for="birthday" class="col-sm-2 control-label">Birthday:</label>
             <div class="col-sm-4">
                 <div class='input-group'>
-                    <input datepicker-popup="MMM dd, yyyy" type='text' class="form-control" name="birthday" ng-model="vi.contact.birth_date" is-open='vi.opened'>
-                    <span class='input-group-btn'>
-                        <button class='btn btn-default' ng-click="vi.open($event)">
-                            <i class='glyphicon glyphicon-calendar'/>
-                        </button>
-                    </span>
+                    <input ui-date="vi.dateOptions" ui-date-format class="form-control" name="birthday" ng-model="vi.contact.birth_date">
                 </div>
             </div>
             <div class="col-sm-6 control-label">
                 <small class='help-block has-error' ng-show="contactInfoForm.birthday.$error.date">
-                    Birthday is wrong format must be some like this (MMM dd, yyyy)
+                    Birthday is wrong format must be some like this (yy-mm-dd)
                 </small>
             </div>
         </div>

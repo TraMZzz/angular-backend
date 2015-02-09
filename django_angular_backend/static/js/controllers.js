@@ -53,7 +53,7 @@
             var vi = this;
             var Id = $routeParams.contactId
 
-            Contacts.get({id : Id}, {}).$promise.then(function(d) {
+            Contacts.query({id : Id}, {}).$promise.then(function(d) {
                 vi.contact = d
                 toastr.success('Success!', 'Get Contact!');
             }).catch(function(response) {
@@ -66,18 +66,17 @@
                     toastr.error('Error!', response.status);
                 });
             }
-            vi.open = function($event) {
-                $event.preventDefault();
-                $event.stopPropagation();
-
-                vi.opened = !vi.opened;
-            }
+            vi.dateOptions = {maxDate:0
+                            ,dateFormat: 'yy-mm-dd'
+                            ,yearRange : "c-50:+0"
+                            ,changeYear: true 
+                            ,changeMonth: true}
         };
 
         LastControllerFunc.$inject = ['$scope', 'Contacts'];
         function LastControllerFunc($scope, Contacts) {
             var vl = this;
-            vl.contacts = $scope.contacts
+            vl.contacts = $scope.contacts;
             vl.limit = $scope.limit || 5;
             vl.orderBy = "-date_created";
             vl.limitFunc = function (v, i) {

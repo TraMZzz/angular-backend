@@ -15,13 +15,16 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-     "bower_modules/angular/angular.js"
+    'bower_modules/jquery/dist/jquery.js'
+    ,'bower_modules/jquery-ui/jquery-ui.js'
+    ,"bower_modules/angular/angular.js"
     ,"bower_modules/angular-mocks/angular-mocks.js"
     ,"bower_modules/angular-route/angular-route.min.js"
     ,"bower_modules/angular-resource/angular-resource.min.js"
     ,"bower_modules/angular-toastr/dist/angular-toastr.min.js"
     ,"bower_modules/angular-bootstrap/ui-bootstrap-tpls.min.js"
     ,'bower_modules/angular-ui-utils/ui-utils.min.js'
+    ,'bower_modules/angular-ui-date/src/date.js'
 
     ,'partials/*.html'
     ,"js/*.js"
