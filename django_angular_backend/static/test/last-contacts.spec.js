@@ -6,6 +6,7 @@ describe('lastContacts', function() {
         module('toastr');
         module('ui.bootstrap');
         module('ui.mask');
+        module('ui.date');
         module('partials');
         module('myApp');
     });

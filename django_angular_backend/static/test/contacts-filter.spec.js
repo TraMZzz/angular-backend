@@ -6,6 +6,7 @@ describe('ContactsController filter', function() {
         module('toastr');
         module('ui.bootstrap');
         module('ui.mask');
+        module('ui.date');
         module('myApp');
     });
 
