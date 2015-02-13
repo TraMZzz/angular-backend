@@ -20,7 +20,7 @@ describe('datePicker', function() {
     
     describe('provides attribute directive ui-date that', function() {
     
-        beforeEach(inject(function(_$compile_, _$rootScope_){    
+        beforeEach(inject(function(_$compile_, _$rootScope_){
             $scope = $rootScope.$new({});
             $scope.dateOptions = {maxDate:0
                             ,dateFormat: 'yy-mm-dd'
@@ -28,9 +28,15 @@ describe('datePicker', function() {
                             ,changeYear: true 
                             ,changeMonth: true}
             $scope.birthday = undefined;
-            input = $compile('<input ui-date="$scope.dateOptions" ui-date-format ng-model="birthday"/>')($scope);
+            input = $compile('<input ui-date="$scope.dateOptions" ng-model="birthday"/>')($scope);
             $scope.$digest();
         }));
+
+        it('should allow set date', function () {
+            var aDate = new Date(1981, 7 - 1, 1);
+            input.datepicker('setDate', aDate); $.datepicker._selectDate(input);
+            expect($scope.birthday).toEqual(aDate);
+        });
 
         it ('should allow to display value of ng-model', function () {
             var aDate = new Date(1960, 3 - 1, 1); 
@@ -40,9 +46,9 @@ describe('datePicker', function() {
             });
             expect(input.datepicker('getDate')).toEqual(aDate)
         });
-        
+
     });
-    
+
     describe('provides transperent work with date-strings', function (){
         
         it ('should allow to set string value in model and read date from Picker', function (){
